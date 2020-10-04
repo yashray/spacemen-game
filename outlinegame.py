@@ -54,7 +54,7 @@ def screen():
 #-------create player---------
 
 def p(player):
-    
+    player.clear()
     player.shape("playerr.gif")
     player.penup()
     player.speed(0)
@@ -63,42 +63,37 @@ def p(player):
 #--------create enemies--------
          
 def ene(e):
-        #-------ask player for total number of enemies------
-         try:   
-            no=int(input("enter number of enemy:   "))
-            
-         except:
-            print("not valied number")
-            ene(e)
-    
+        #-------ask player for total number of enemies----
+                  no=5
          if no>=1:
+                enemies.clear()
+                for i in range(no):
                     
-                    for i in range(no):
-                        enemies.append(turtle.Turtle()) # create turtle object for all enemies
-                    for enemy in enemies:
-                        enemy.shape("enemy.gif")
-                        enemy.penup()
-                        enemy.speed(0)
-                        x=random.choice(posix)  # select x position form posix list
-                        #print("x:",x)
-                        #----to remove overriding enemy position-------
-                        if x in alist:  # check it is already in alist or not if yes then
-                                x=random.choice(posix)  # choice again
+                    enemies.append(turtle.Turtle()) # create turtle object for all enemies
+                for enemy in enemies:
+                    enemy.shape("enemy.gif")
+                    enemy.penup()
+                    enemy.speed(0)
+                    x=random.choice(posix)  # select x position form posix list
+                    #print("x:",x)
+                    #----to remove overriding enemy position-------
+                    if x in alist:  # check it is already in alist or not if yes then
+                            x=random.choice(posix)  # choice again
                                 #print("x1:",x)
-                        else:
-                                alist.append(x) # otherwise add that number to alist
-                                #print("alist",alist)
+                    else:
+                            alist.append(x) # otherwise add that number to alist
+                            #print("alist",alist)
                         
-                        y=random.choice(posiy)  # select y position
-                        if y in blist:
-                                y=random.choice(posiy)
-                        else:
-                                blist.append(y)
-                                #print("blist",blist)
-                        enemy.setposition(x,y)  # set enemy position
+                    y=random.choice(posiy)  # select y position
+                    if y in blist:
+                            y=random.choice(posiy)
+                    else:
+                            blist.append(y)
+                            #print("blist",blist)
+                    enemy.setposition(x,y)  # set enemy position
          else:
-                   print("enter valied number")
-                   ene(e)
+                print("enter valied number")
+                ene(e)
 #----------create enemy ship-------   
 def ene_ship(s):
         for i in range(0,1):
@@ -142,7 +137,7 @@ def player_score(point):
         point.penup()
         point.speed(0)
         point.setposition(530,300)      # set text position
-        point.write("Score:" ,align="right",font=("Arial",22))
+        point.write("Score:" ,align="right",font=("Jokerman",30,"bold"))
         point.hideturtle()
         
 #--------define player life---------
@@ -152,7 +147,7 @@ def player_life(life):
         life.speed(0)
         life.setposition(-530,300)
         playerlife=len(plist)
-        life.write("Life: %d"%playerlife ,align="left",font=("Arial",22))
+        life.write("Life: %d"%playerlife ,align="left",font=("Jokerman",30,"bold"))
         life.hideturtle()
 #--------when bullet touch enemyship----------        
 def touch_eneship_bullet(t1, t2):
@@ -238,7 +233,7 @@ turtle.listen()
 turtle.onkey(leftmove,"Left")
 turtle.onkey(rightmove,"Right")
 turtle.onkey(fire,"space")
-turtle.onkey(pause,"P")
+turtle.onkey(pause,"p")
 
 #---------game loop---------
 
@@ -269,7 +264,7 @@ while True:
 
 			score += 10
 			point.clear()
-			point.write("score: %s" %score, align="left", font=("Arial", 22))
+			point.write("score: %s" %score, align="left", font=("Jokerman",30,"bold"))
 			
 			#Reset the bullet
                         
@@ -287,7 +282,7 @@ while True:
 			score += 10
 			
 			point.clear()
-			point.write("score: %s" %score, align="left", font=("Arial", 22))
+			point.write("score: %s" %score, align="left", font=("Jokerman",30,"bold"))
                         
 			#Reset the bullet
 
@@ -327,7 +322,7 @@ while True:
 			enemyship.setposition(0,y)
 			score+=15
 			point.clear()
-			point.write("score: %s" %score, align="left", font=("Arial", 22))
+			point.write("score: %s" %score, align="left", font=("Jokerman",30,"bold"))
 			
 		
 		#-------if enemyship touch screen bounderies then it move back to opposite direction------
